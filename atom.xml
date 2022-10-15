@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-10-14T02:18:38.312Z</updated>
+  <updated>2022-10-14T13:02:24.000Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,22 +17,72 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://example.com/2022/10/14/hello-world/"/>
-    <id>http://example.com/2022/10/14/hello-world/</id>
-    <published>2022-10-14T02:18:38.312Z</published>
-    <updated>2022-10-14T02:18:38.312Z</updated>
+    <title>Mac配置vscode的C/C++调试环境（vscode版）</title>
+    <link href="http://example.com/2022/10/14/Mac%E9%85%8D%E7%BD%AEvscode%E7%9A%84C%E4%B8%8ECpp%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/"/>
+    <id>http://example.com/2022/10/14/Mac%E9%85%8D%E7%BD%AEvscode%E7%9A%84C%E4%B8%8ECpp%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/</id>
+    <published>2022-10-14T13:02:24.000Z</published>
+    <updated>2022-10-14T13:02:24.000Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="Mac配置vscode的C-x2F-C-调试环境"><a href="#Mac配置vscode的C-x2F-C-调试环境" class="headerlink" title="Mac配置vscode的C&#x2F;C++调试环境"></a>Mac配置vscode的C&#x2F;C++调试环境</h1><ul><li>新建一个文件夹，用vscode，然后再新建一个test.c文件<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="type">int</span> a = <span class="number">1</span>, b = <span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> c = a + b;</span><br><span class="line">cout &lt;&lt; c &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><p>关键在于c_cpp_properties.json、tasks.json、launch.json这三个文件</p><h2 id="c-cpp-properties-json"><a href="#c-cpp-properties-json" class="headerlink" title="c_cpp_properties.json"></a>c_cpp_properties.json</h2><p>按下<code>fn + F1</code>键，打开<strong>命令面板</strong>，然后搜c&#x2F;c++<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221015014631.png"><br>点击编辑配置UI<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221015014740.png"><br>本文以clang++为例子，大家可以选择其他</p><h2 id="tasks-json"><a href="#tasks-json" class="headerlink" title="tasks.json"></a>tasks.json</h2><p>再次打开命令面板，然后搜Tasks<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221015014911.png"><br>选择配置默认<strong>生成</strong>任务。<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221015015039.png"><br>之后选择clang++，因为前文我们选择编译器路径是clang++</p><h1 id="launch-json"><a href="#launch-json" class="headerlink" title="launch.json"></a>launch.json</h1><p><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221015015311.png"></p><p><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221015015249.png"></p><p>我们选择c++（GDB&#x2F;LLDB）<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221015015425.png"></p><p>打个断点，点击运行和调试，就发现可以调试了。<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221015015545.png"></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+    <summary type="html">&lt;h1 id=&quot;Mac配置vscode的C-x2F-C-调试环境&quot;&gt;&lt;a href=&quot;#Mac配置vscode的C-x2F-C-调试环境&quot; class=&quot;headerlink&quot; title=&quot;Mac配置vscode的C&amp;#x2F;C++调试环境&quot;&gt;&lt;/a&gt;Mac配置vscode的</summary>
       
     
     
     
+    <category term="Mac" scheme="http://example.com/categories/Mac/"/>
+    
+    
+    <category term="环境配置" scheme="http://example.com/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Z-GCNETs：用于时间序列预测的图卷积网络中的时间之字形</title>
+    <link href="http://example.com/2022/10/14/Z-GCNETs%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E9%A2%84%E6%B5%8B%E7%9A%84%E5%9B%BE%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4%E4%B9%8B%E5%AD%97%E5%BD%A2/"/>
+    <id>http://example.com/2022/10/14/Z-GCNETs%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E9%A2%84%E6%B5%8B%E7%9A%84%E5%9B%BE%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4%E4%B9%8B%E5%AD%97%E5%BD%A2/</id>
+    <published>2022-10-14T08:10:06.000Z</published>
+    <updated>2022-10-14T08:10:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Z-GCNETs：用于时间序列预测的图卷积网络中的时间之字形"><a href="#Z-GCNETs：用于时间序列预测的图卷积网络中的时间之字形" class="headerlink" title="Z-GCNETs：用于时间序列预测的图卷积网络中的时间之字形"></a>Z-GCNETs：用于时间序列预测的图卷积网络中的时间之字形</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>最近，人们对开发一类新的深度学习 (DL) 架构的兴趣激增，该架构<strong>将明确的时间维度集成为学习和表示机制的基本构建块</strong>。反过来，最近的许多结果表明，数据的持久同源性可能包含重要的互补信息，可以提高性能、增强 DL 的鲁棒性。作为这两个新兴想法的融合，我们提议使用最显着的数据的时间条件拓扑信息来增强 DL 架构，并将 zigzag 持久性的概念引入时间感知图卷积网络 (GCN)。 Zigzag 持久性提供了一个系统且数学上严谨的框架来跟踪观察到的数据的最重要的拓扑特征，这些拓扑特征往往会随着时间的推移而显现出来。为了将提取的时间条件拓扑描述集成到 DL 中，我们开发了一种新的拓扑总结，即锯齿形持久性图像（ZPI），并推导出其理论稳定性保证。我们使用时间感知之字形拓扑层 (Z-GCNETs) 验证新的 GCN，应用于流量预测和以太坊区块链价格预测。我们的结果表明 Z-GCNET 在 4 个时间序列数据集上优于 13 种最先进的方法</p><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>在过去的几年中，我们观察到将深度神经网络架构与学习对象的持久同源表示的集成，通常以 DL 中某些拓扑层的形式。这种持久同源性表示允许我们提取和学习对象形状的描述。（通过这里的形状，我们广泛理解在连续变换（如弯曲、拉伸和压缩）下不变的数据特征）</p><p>在这里，我们迈出了融合这两个方向的第一步。为了使动态链表具有最显著的时态拓扑信息，我们将之字形持久化的概念引入到时态链表中。在箭图表示的基本结果的基础上，Zigzag 持久性研究了通过<strong>双向包含连接的拓扑空间的性质</strong>。我们建议将提取的时间感知持久性以 Zigzag 持久性图像的形式进行总结，然后将所得到的信息作为可学习的时间感知 Zigzag 层集成到GCN中。</p><h3 id="Contributions"><a href="#Contributions" class="headerlink" title="Contributions"></a>Contributions</h3><ol><li>这是第一种将<strong>时间条件DL</strong>与<strong>数据的时间感知持久同调表示</strong>联系起来的方法。</li><li>提出了Zigzag持久化图像，并讨论了它的理论稳定性</li><li>将时间感知 Zigzag 持久性的概念引入学习时间条件图结构，提出了时间感知图卷积网络的之字形拓扑层(Z-GCNET)</li><li>将Z-GCNET应用于流量预测和以太区块链价格预测的实验表明，Z-GCNET在4个基准数据集上的准确率和稳健性都超过了13种最先进的方法。</li></ol><h2 id="Time-Aware-Topological-Signatures-of-Graphs"><a href="#Time-Aware-Topological-Signatures-of-Graphs" class="headerlink" title="Time-Aware Topological Signatures of Graphs"></a>Time-Aware Topological Signatures of Graphs</h2><h3 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h3><p>定义3.1 (Zigzag Persistence Diagram (ZPD))<br>当一个拓扑特征在固定尺度参数 $v∗$ 的单纯复形之字形图上的时间周期 $[1,T]$ 内首次出现 $t_b$ (即诞生)和消失 $t_d$ (即死亡)时，如果拓扑特征首先出现在$C(G_k，v*)$中，$t_b&#x3D;k$；如果它首先出现在 $C(Gk∪Gk+1，v*)$ 中，$t_b&#x3D;k+1&#x2F;2$。类似地，如果一个拓扑特征最后出现在 $C(G_k，v*)$ 中，$t_d&#x3D;k$；如果它最后出现在 $C(Gk∪Gk+1，v*)$中，$t_d&#x3D;k+1&#x2F;2$。对于固定的 $v*$，$R^2$中的多个点，$DgmZZ_{v*}&#x3D;\lbrace (t_b，t_d)∈R^2|t_b&lt;t_d \rbrace$ 称为ZPD图。</p><p>受持久化图像作为普通持久化的总结的概念的启发，为了将ZPD总结的拓扑信息输入GCN，我们提出了ZPD的ZPI表示。ZPI是ZPD的有限维矢量表示，可以通过以下步骤计算：</p><ol><li>将一个Z字形持久性图 $DgmZZ_{v∗}$ 映射到一个可积函数 $\rho DgmZZ_{v*}：R^2 \rightarrow R^2$，称为 zigzag 持久面。zigzag 持久面由以 $DgmZZ_{v*}$中每个点为中心的加权高斯函数之和给出，即 $DgmZZ_ν*$<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221016013800.png"></li><li>对网格中 zigzag 持久表面 $ρDgmZZ_{ν∗}$ 的子域进行离散化。</li><li>ZPI，即像素值矩阵，可以通过对每个网格框的后续积分获得。</li></ol><p>然后将 ZPI 内的每个像素 $z ∈ R2$ 的值定义为：<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221016014047.png"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Z-GCNETs：用于时间序列预测的图卷积网络中的时间之字形&quot;&gt;&lt;a href=&quot;#Z-GCNETs：用于时间序列预测的图卷积网络中的时间之字形&quot; class=&quot;headerlink&quot; title=&quot;Z-GCNETs：用于时间序列预测的图卷积网络中的时间之字形&quot;&gt;</summary>
+      
+    
+    
+    
+    <category term="深度学习" scheme="http://example.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>GTN:基于Transformer的图生成模型</title>
+    <link href="http://example.com/2022/10/14/GTN-%E5%9F%BA%E4%BA%8ETransformer%E7%9A%84%E5%9B%BE%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B/"/>
+    <id>http://example.com/2022/10/14/GTN-%E5%9F%BA%E4%BA%8ETransformer%E7%9A%84%E5%9B%BE%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B/</id>
+    <published>2022-10-14T06:28:05.000Z</published>
+    <updated>2022-10-14T06:28:05.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="GTN-基于Transformer的图生成模型"><a href="#GTN-基于Transformer的图生成模型" class="headerlink" title="GTN-基于Transformer的图生成模型"></a>GTN-基于Transformer的图生成模型</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;GTN-基于Transformer的图生成模型&quot;&gt;&lt;a href=&quot;#GTN-基于Transformer的图生成模型&quot; class=&quot;headerlink&quot; title=&quot;GTN-基于Transformer的图生成模型&quot;&gt;&lt;/a&gt;GTN-基于Transformer</summary>
+      
+    
+    
+    
+    <category term="深度学习" scheme="http://example.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="图生成" scheme="http://example.com/tags/%E5%9B%BE%E7%94%9F%E6%88%90/"/>
     
   </entry>
   
