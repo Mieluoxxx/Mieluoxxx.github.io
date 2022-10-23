@@ -7,9 +7,9 @@ http://example.com/2022/10/14/GTN-%E5%9F%BA%E4%BA%8ETransformer%E7%9A%84%E5%9B%B
 http://example.com/tags/index.html
 http://example.com/categroies/index.html
 http://example.com/
-http://example.com/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/
 http://example.com/tags/%E5%9B%BE%E7%94%9F%E6%88%90/
+http://example.com/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/
 http://example.com/tags/%E5%9B%BE%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B/
-http://example.com/categories/Mac/
 http://example.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/
+http://example.com/categories/Mac/
 http://example.com/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/
