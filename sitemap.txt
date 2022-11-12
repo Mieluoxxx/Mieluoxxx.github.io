@@ -1,3 +1,4 @@
+http://example.com/categories/index.html
 http://example.com/2022/10/23/Pytorch%E4%B8%8ETensorflow%E7%9A%84%E5%AE%89%E8%A3%85%EF%BC%88Windows%E7%89%88%EF%BC%89/
 http://example.com/2022/10/19/Mac%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E8%B8%A9%E5%9D%91%E8%AE%B0/
 http://example.com/2022/10/17/Tensorflow%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/
@@ -7,9 +8,9 @@ http://example.com/2022/10/14/GTN-%E5%9F%BA%E4%BA%8ETransformer%E7%9A%84%E5%9B%B
 http://example.com/tags/index.html
 http://example.com/categroies/index.html
 http://example.com/
-http://example.com/tags/%E5%9B%BE%E7%94%9F%E6%88%90/
 http://example.com/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/
 http://example.com/tags/%E5%9B%BE%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B/
-http://example.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/
+http://example.com/tags/%E5%9B%BE%E7%94%9F%E6%88%90/
 http://example.com/categories/Mac/
+http://example.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/
 http://example.com/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/
