@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-10-23T05:44:43.000Z</updated>
+  <updated>2022-11-18T16:52:48.000Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,132 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>记忆渐消，带遗忘因子的最小二乘法</title>
+    <link href="http://example.com/2022/11/19/%E8%AE%B0%E5%BF%86%E6%B8%90%E6%B6%88%EF%BC%8C%E5%B8%A6%E9%81%97%E5%BF%98%E5%9B%A0%E5%AD%90%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95/"/>
+    <id>http://example.com/2022/11/19/%E8%AE%B0%E5%BF%86%E6%B8%90%E6%B6%88%EF%BC%8C%E5%B8%A6%E9%81%97%E5%BF%98%E5%9B%A0%E5%AD%90%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95/</id>
+    <published>2022-11-18T16:52:48.000Z</published>
+    <updated>2022-11-18T16:52:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="RLS算法"><a href="#RLS算法" class="headerlink" title="RLS算法"></a>RLS算法</h2><p>RLS算法的关键是用二乘方的时间平均准则取代最小均方准则，并按照时间进行迭代计算，换句话说，对从起始时刻到当前时刻<strong>所有误差的平方进行平均并使之最小化</strong>，即：<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221119010436.png">其中：<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221119010504.png"><br>对于，非平稳随机信号，为了更好的跟踪，引入一个指数加权因子对上式进行修正：<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221119010625.png"><br>式中，$\lambda$ 称之为<strong>遗忘因子</strong>，它是小于1的正数，展开上式可以知道，新到的数据比就到的数据更重要。</p><p>这里定义两个新的矩阵（被加权后的<strong>自相关和互相关</strong>），即：<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221119010747.png"><br>可以推出 $RLS$ 算法基本关系：<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221119010847.png">其中：<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221119010928.png"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;RLS算法&quot;&gt;&lt;a href=&quot;#RLS算法&quot; class=&quot;headerlink&quot; title=&quot;RLS算法&quot;&gt;&lt;/a&gt;RLS算法&lt;/h2&gt;&lt;p&gt;RLS算法的关键是用二乘方的时间平均准则取代最小均方准则，并按照时间进行迭代计算，换句话说，对从起始时刻到当前时刻&lt;</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>实现mnist手写数字识别｜第一天</title>
+    <link href="http://example.com/2022/11/14/%E5%AE%9E%E7%8E%B0mnist%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%EF%BD%9C%E7%AC%AC%E4%B8%80%E5%A4%A9/"/>
+    <id>http://example.com/2022/11/14/%E5%AE%9E%E7%8E%B0mnist%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%EF%BD%9C%E7%AC%AC%E4%B8%80%E5%A4%A9/</id>
+    <published>2022-11-14T09:17:19.000Z</published>
+    <updated>2022-11-14T09:17:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据集读入</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">x_data = datasets.load_iris().data</span><br><span class="line">y_data = datasets.load_iris().target</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据集乱序</span></span><br><span class="line">np.random.seed(<span class="number">116</span>)</span><br><span class="line">np.random.shuffle(x_data)</span><br><span class="line">np.random.seed(<span class="number">116</span>)</span><br><span class="line">np.random.shuffle(y_data)</span><br><span class="line">tf.random.set_seed(<span class="number">116</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据集划分</span></span><br><span class="line">(x_train, y_train), (x_test,y_test) = (x_data[:-<span class="number">30</span>], y_data[:-<span class="number">30</span>]), (x_data[-<span class="number">30</span>:], y_data[-<span class="number">30</span>:])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 转换数据类型</span></span><br><span class="line">x_train = tf.cast(x_train, tf.float32)</span><br><span class="line">x_test = tf.cast(x_test, tf.float32)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配成 [输入特征，标签]对，每次喂入一小撮（batch）</span></span><br><span class="line">train_db = tf.data.Dataset.from_tensor_slices((x_train,y_train)).batch(<span class="number">32</span>)</span><br><span class="line">test_db = tf.data.Dataset.from_tensor_slices((x_test,y_test)).batch(<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义神经网络中所有可训练的参数</span></span><br><span class="line">w1 = tf.Variable(tf.random.truncated_normal([<span class="number">4</span>,<span class="number">3</span>],stddev=<span class="number">0.1</span>,seed=<span class="number">1</span>))</span><br><span class="line">b1 = tf.Variable(tf.random.truncated_normal([<span class="number">3</span>],stddev=<span class="number">0.1</span>,seed=<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">lr = <span class="number">0.1</span></span><br><span class="line">train_loss_results = []</span><br><span class="line">test_acc = []</span><br><span class="line">epoch = <span class="number">500</span></span><br><span class="line">loss_all = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 嵌套循环迭代，with结构更新参数，显示当前loss</span></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epoch):</span><br><span class="line">    <span class="keyword">for</span> step, (x_train, y_train) <span class="keyword">in</span> <span class="built_in">enumerate</span>(train_db): <span class="comment"># batch级别迭代</span></span><br><span class="line">        <span class="keyword">with</span> tf.GradientTape() <span class="keyword">as</span> tape: <span class="comment"># 记录梯度信息，前向传播过程计算y，计算总loss</span></span><br><span class="line">            y = tf.matmul(x_train, w1) + b1 <span class="comment"># 神经网络乘加运算</span></span><br><span class="line">            y = tf.nn.softmax(y)    <span class="comment"># 归一化</span></span><br><span class="line">            y_ = tf.one_hot(y_train, depth=<span class="number">3</span>)   <span class="comment"># 将标签值转换为独热码</span></span><br><span class="line">            loss = tf.reduce_mean(tf.square(y_ - y)) <span class="comment"># 采用MSE均方差作为损失函数</span></span><br><span class="line">            loss_all += loss.numpy()</span><br><span class="line">        <span class="comment"># 计算loss对每个参数的梯度</span></span><br><span class="line">        grads = tape.gradient(loss, [w1,b1])</span><br><span class="line"></span><br><span class="line">        w1.assign_sub(lr * grads[<span class="number">0</span>]) <span class="comment"># 参数w1自更新</span></span><br><span class="line">        b1.assign_sub(lr * grads[<span class="number">1</span>]) <span class="comment"># 参数b自更新</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 每个epoch，打印loss信息</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Epoch&#123;&#125;,loss:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(epoch,loss_all/<span class="number">4</span>))</span><br><span class="line">    train_loss_results.append(loss_all/<span class="number">4</span>)   <span class="comment">#4个step为一组</span></span><br><span class="line">    loss_all = <span class="number">0</span> <span class="comment"># 为下一次做准备</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 测试部分</span></span><br><span class="line">    <span class="comment"># 计算当前参数前向传播后的准确率，显示当前acc</span></span><br><span class="line">    total_correct, total_number = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> x_test, y_test <span class="keyword">in</span> test_db:</span><br><span class="line">        <span class="comment"># 使用更新后的参数进行预测</span></span><br><span class="line">        y = tf.matmul(x_test, w1) + b1  <span class="comment"># y为预测结果</span></span><br><span class="line">        y = tf.nn.softmax(y)    <span class="comment"># y符合概率分布</span></span><br><span class="line">        pred = tf.argmax(y, axis=<span class="number">1</span>) <span class="comment"># 返回y中最大值的索引，即预测的分类</span></span><br><span class="line">        <span class="comment"># 将pred转换为y_test的数据类型</span></span><br><span class="line">        pred = tf.cast(pred, dtype=y_test.dtype)  <span class="comment"># 调整数据类型与标签一致</span></span><br><span class="line">        <span class="comment"># 若分类正确，则correct=1，否则为0，将bool型的结果转换为int型</span></span><br><span class="line">        correct = tf.cast(tf.equal(pred,y_test), dtype=tf.int32)</span><br><span class="line">        <span class="comment"># 将每个batch的correct数加起来</span></span><br><span class="line">        correct = tf.reduce_sum(correct) </span><br><span class="line">        <span class="comment">#将所有batch的correct数加起来</span></span><br><span class="line">        total_correct += <span class="built_in">int</span>(correct) </span><br><span class="line">        <span class="comment"># total_number为测试的总样本数,也就是x_test的行数，shape[0]返回变量的行数</span></span><br><span class="line">        total_number += x_test.shape[<span class="number">0</span>]</span><br><span class="line">    acc = total_correct / total_number</span><br><span class="line">    test_acc.append(acc)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;test_acc:&quot;</span>, acc)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;-----------------&quot;</span>)</span><br><span class="line"><span class="comment"># loss可视化</span></span><br><span class="line">plt.title(<span class="string">&#x27;Loss Function Curve&#x27;</span>) <span class="comment"># 图片标题</span></span><br><span class="line">plt.xlabel(<span class="string">&#x27;Epoch&#x27;</span>) <span class="comment"># x轴名称</span></span><br><span class="line">plt.ylabel(<span class="string">&#x27;Loss&#x27;</span>) <span class="comment"># y轴名称</span></span><br><span class="line">plt.plot(train_loss_results, label = <span class="string">&#x27;$Loss$&#x27;</span>) <span class="comment"># 逐点画出train_loss值并连线</span></span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># acc可视化</span></span><br><span class="line">plt.title(<span class="string">&#x27;Add Curve&#x27;</span>) <span class="comment"># 图片标题</span></span><br><span class="line">plt.xlabel(<span class="string">&#x27;Epoch&#x27;</span>) <span class="comment"># x轴名称</span></span><br><span class="line">plt.ylabel(<span class="string">&#x27;Acc&#x27;</span>) <span class="comment"># y轴名称</span></span><br><span class="line">plt.plot(test_acc, label = <span class="string">&#x27;$Accuracy$&#x27;</span>) <span class="comment"># 逐点画出train_loss值并连线</span></span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure><p><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221119005022.png"></p><p><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221119005042.png"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span clas</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>yonohost体验报告</title>
+    <link href="http://example.com/2022/11/12/yonohost%E4%BD%93%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
+    <id>http://example.com/2022/11/12/yonohost%E4%BD%93%E9%AA%8C%E6%8A%A5%E5%91%8A/</id>
+    <published>2022-11-11T17:50:25.000Z</published>
+    <updated>2022-11-11T17:50:25.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="yonohost体验报告"><a href="#yonohost体验报告" class="headerlink" title="yonohost体验报告"></a>yonohost体验报告</h1><p>本质上，YunoHost 是基于 Debian 的发行版，但专门面向自托管开源服务的场景设计，不仅提供了美观、易用的网页端前后台界面，而且有一个社区维护的「应用商店」，把繁琐多变的服务部署流程简化为几次鼠标点击。</p><p><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221112015256.png"></p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>YunoHost 主要有两种安装方式：既可以下载完整的 ISO 镜像，直接在一台 x86 或 ARM 架构的裸机（包括树莓派等开发板）上全新安装；也可以先准备一个干净的 Debian 11 系统，然后运行安装脚本当作补丁安装。<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221112015423.png"></p><p>以root用户的身份运行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://install.yunohost.org | bash</span><br></pre></td></tr></table></figure><p><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221112015645.png"><br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221112114814.png"></p><h2 id="域名绑定"><a href="#域名绑定" class="headerlink" title="域名绑定"></a>域名绑定</h2><p>在这里绑定一个域名，或者使用yonohost分配的ip<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221112114953.png"></p><p>到目前为止，我们都是在后台页面操作，并且操作都是以管理员用户 admin 的身份做出的。但为了安装和使用各种软件，还需要创建至少一个普通权限的前台用户，用来登录前台页面。</p><p>为此，在后台首页点击 Users &gt; New User，然后输入用户名、密码等完成创建。<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221112115131.png"></p><h2 id="应用安装"><a href="#应用安装" class="headerlink" title="应用安装"></a>应用安装</h2><table><thead><tr><th align="left">类型</th><th align="center">名称</th><th align="left">说明</th></tr></thead><tbody><tr><td align="left">网页归档</td><td align="center">ArchiveBox</td><td align="left">内置多种网页归档引擎，可以完整准确地保存大多数复杂网页以及链接的多媒体资源，支持 API 和批量操作</td></tr><tr><td align="left">文本编辑</td><td align="center">HedgeDoc</td><td align="left">全功能在线 Markdown 编辑器，支持多人协作</td></tr></tbody></table>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;yonohost体验报告&quot;&gt;&lt;a href=&quot;#yonohost体验报告&quot; class=&quot;headerlink&quot; title=&quot;yonohost体验报告&quot;&gt;&lt;/a&gt;yonohost体验报告&lt;/h1&gt;&lt;p&gt;本质上，YunoHost 是基于 Debian 的发行版，但</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="http://example.com/categories/Linux/"/>
+    
+    
+    <category term="系统体验" scheme="http://example.com/tags/%E7%B3%BB%E7%BB%9F%E4%BD%93%E9%AA%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>持久性图像：持久同源性的稳定向量表示</title>
+    <link href="http://example.com/2022/10/28/%E6%8C%81%E4%B9%85%E6%80%A7%E5%9B%BE%E5%83%8F%EF%BC%9A%E6%8C%81%E4%B9%85%E5%90%8C%E6%BA%90%E6%80%A7%E7%9A%84%E7%A8%B3%E5%AE%9A%E5%90%91%E9%87%8F%E8%A1%A8%E7%A4%BA/"/>
+    <id>http://example.com/2022/10/28/%E6%8C%81%E4%B9%85%E6%80%A7%E5%9B%BE%E5%83%8F%EF%BC%9A%E6%8C%81%E4%B9%85%E5%90%8C%E6%BA%90%E6%80%A7%E7%9A%84%E7%A8%B3%E5%AE%9A%E5%90%91%E9%87%8F%E8%A1%A8%E7%A4%BA/</id>
+    <published>2022-10-28T06:49:55.000Z</published>
+    <updated>2022-10-28T06:49:55.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="持久性图像：持久同源性的稳定向量表示"><a href="#持久性图像：持久同源性的稳定向量表示" class="headerlink" title="持久性图像：持久同源性的稳定向量表示"></a>持久性图像：持久同源性的稳定向量表示</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>许多数据集可以被视为底层空间的噪声采样，拓扑数据分析的工具可以表征这种结构以用于知识发现。一个这样的工具是持久同源性，它提供了数据集中同源性特征的多尺度描述。这种同调信息的有用表示是持久性图（PD）。已经努力将 PD 映射到具有对机器学习任务有价值的附加结构的空间中。我们将 PD 转换为我们称为持久图像 (PI) 的有限维向量表示，并证明这种转换相对于输入中的小扰动的稳定性。这将 PI 的辨别力与现有方法进行比较，显示出显着的性能提升。我们探索将 PI 与基于向量的机器学习工具一起使用，例如线性稀疏支持向量机，这些工具可以识别包含区分拓扑信息的特征。最后，从离散动力系统（链接扭曲图）和偏微分方程（各向异性 Kuramoto-Sivashinsky 方程）的动态输出中高精度推断参数值提供了 PI 辨别能力的新应用。</p><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>近年来，拓扑领域已经发展到包括大量的计算工具。基本工具之一是持久同源性，它跟踪拓扑特征如何在嵌套的拓扑空间序列中出现和消失。这种多尺度信息可以表示为持久性图 (PD)，即平面中点的集合，其中每个点 (x, y) 对应于出现在 x 尺度处并在 y 尺度处消失的拓扑特征。我们说该特征的持久性值为 y - x。这种通过平面中有限多组点对拓扑特征的紧凑总结，部分原因是人们对将持久同源性应用于分析复杂的、通常是高维的数据的兴趣激增。计算拓扑已成功应用于广泛的数据驱动学科。</p><p>在计算拓扑学革命的同时，对数据分析日益增长的普遍兴趣推动了数据挖掘、模式识别和机器学习 (ML) 的进步。由于 PD 的空间可以配备度量结构，并且由于这些度量揭示了 PD 在它们总结的数据的小扰动下的稳定性，可以使用 PD 作为聚类数据集的统计数据来执行各种 ML 技术。然而，许多其他有用的 ML 工具和技术（例如，支持向量机 (SVM)、决策树分类、神经网络、特征选择和降维方法）需要的不仅仅是度量结构。此外，计算瓶颈或 Wasserstein 距离的成本随着图表中非对角点数量的增加而迅速增长。为了解决这些问题，已经做出了相当大的努力。将 PD 映射到适用于其他 ML 工具的空间。考虑到这些方法的优缺点，我们提出以下问题：</p><p>问题陈述：我们如何表示一个持久性图，以便<br>(i) 表示的输出是 $R^n$ 中的向量，<br>(ii) 表示相对于输入噪声是稳定的，<br>(iii) 表示计算效率高，<br>(iv) 表示保持与原始 PD 的可解释连接，<br>(v) 表示允许调整 PD 不同区域中点的相对重要性？</p><p>本文的主要贡献是研究称为持久图像（PI）的 PD 的有限维向量表示。我们首先将持久性图 B 映射到可积函数 ρB : R2 → R，称为持久性表面。表面 ρB 定义为高斯函数的加权和，一个以 PD 中的每个点为中心。在 Donatini 等人的研究中，持久表面的概念甚至在持久同源性发展之前就已经出现。对 ρB 的子域进行离散化定义了一个网格。可以通过计算每个网格框上的 ρB 的积分来创建持久图像，即像素值矩阵。此 PI 是 PD 的“矢量化”，并为上述问题陈述提供了解决方案。</p><p>标准 (i) 是开发 PI 的主要动机。已经存在大量的机器学习技术和统计工具（均值和方差）来处理 $R^n$ 中的数据。此外，这种表示允许使用各种距离度量（p-范数和基于角度的度量）和其他（不）相似性度量。问题陈述 (ii-v) 的其余标准进一步确保了这种表示的有用性。</p><p>标准(v) 的所需灵活性是通过允许将 PI 构建为高斯加权和来实现的，其中权重可以从广泛的加权函数类别中选择。例如，典型的解释是 PD 中的点高持久性比低持久性点（可能对应于噪声）更重要。因此，可以将 PI 构建为高斯加权和，其中加权函数相对于每个 PD 点的持续值不递减。然而，在某些情况下，人们可能更喜欢不同的重要性度量。事实上，有人发现，在他们从动脉几何形状识别人脑年龄的回归任务中，中等持久性（非高持久性）的点最能区分数据。在这样的设置中，可以为中等持久性的点选择具有最大值的加权函数。此外，同源推理定理指出，当给定来自空间 X 的足够密集的有限样本时，PD 中具有足够小的出生时间（和足够高的持久性）的点可以恢复同源性空间组；因此，人们可以选择一个加权函数来强调靠近死亡轴和远离对角线的点，如图2中最左边的黄色矩形所示。 (v)中的灵活性的一个潜在缺点是它需要一个选择；然而，一个人的特定问题的先验知识可能会告知该选择。此外，我们的示例说明了不随持久性值减小的加权函数的标准选择的有效性。</p><p>本文的其余部分组织如下。 §2 回顾了连接拓扑数据分析和 ML 的相关工作，§3 简要介绍了持久同源性、点云数据的 PD、函数的 PD，以及瓶颈和 Wasserstein 度量。 PI 在 §4 中定义，它们相对于 1-Wasserstein 距离的稳定性。PD 之间的关系在§5 中得到证明。最后，第 6 节包含应用于从公共拓扑空间样本生成的 PI 的 ML 技术示例、应用动力学系统建模湍流混合，以及描述远离平衡的扩展系统中的模式形成的偏微分方程。</p><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>PI 提供了 PD 捕获的拓扑特征的稳定表示。通过这种矢量化，我们打开了通往无数 ML 工具的大门。这充当了 ML 和拓扑数据分析领域之间的重要桥梁，使人们能够在数据分类中利用拓扑结构（即使在多个同调维度中）。</p><p>我们已经证明，在使用 K-medoids 的多个噪声级别的公共拓扑空间的采样数据上，PIs 比 PLs 和 PDs 产生了更高的分类精度。此外，与计算 PD 之间的距离相比，计算 PI 之间的距离所需的计算时间要少得多，并且与 PL 的计算时间相当。通过 PI，我们可以使用各种 ML 工具，例如可用于特征选择的 SSVM。在 PI 中选择为可区分的特征（像素）是可解释的，因为它们对应于 PD 的区域。我们探索了源自动态系统的数据集，并说明解决方案的拓扑信息可用于参数推断，因为 PI 将这些信息封装在适合 ML 工具的形式中，从而导致难以分类的数据的高准确率</p><p>分类准确度对构建 PI 的参数选择具有鲁棒性，证明不需要执行大规模参数搜索即可实现合理的分类准确度。这表明即使没有基础数据的先验知识（即高噪声水平、预期漏洞等），PI 的效用也是如此。 PI 的灵活性允许针对各种实际数据集进行定制。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;持久性图像：持久同源性的稳定向量表示&quot;&gt;&lt;a href=&quot;#持久性图像：持久同源性的稳定向量表示&quot; class=&quot;headerlink&quot; title=&quot;持久性图像：持久同源性的稳定向量表示&quot;&gt;&lt;/a&gt;持久性图像：持久同源性的稳定向量表示&lt;/h1&gt;&lt;h2 id=&quot;A</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>基于持久同源的功能连接解释认知能力：寿命研究</title>
+    <link href="http://example.com/2022/10/27/%E5%9F%BA%E4%BA%8E%E6%8C%81%E4%B9%85%E5%90%8C%E6%BA%90%E7%9A%84%E5%8A%9F%E8%83%BD%E8%BF%9E%E6%8E%A5%E8%A7%A3%E9%87%8A%E8%AE%A4%E7%9F%A5%E8%83%BD%E5%8A%9B%EF%BC%9A%E5%AF%BF%E5%91%BD%E7%A0%94%E7%A9%B6/"/>
+    <id>http://example.com/2022/10/27/%E5%9F%BA%E4%BA%8E%E6%8C%81%E4%B9%85%E5%90%8C%E6%BA%90%E7%9A%84%E5%8A%9F%E8%83%BD%E8%BF%9E%E6%8E%A5%E8%A7%A3%E9%87%8A%E8%AE%A4%E7%9F%A5%E8%83%BD%E5%8A%9B%EF%BC%9A%E5%AF%BF%E5%91%BD%E7%A0%94%E7%A9%B6/</id>
+    <published>2022-10-27T13:00:29.000Z</published>
+    <updated>2022-10-27T13:00:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="基于持久同源的功能连接解释认知能力：寿命研究"><a href="#基于持久同源的功能连接解释认知能力：寿命研究" class="headerlink" title="基于持久同源的功能连接解释认知能力：寿命研究"></a>基于持久同源的功能连接解释认知能力：寿命研究</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>静息状态功能网络中的大脑<strong>分离属性</strong>已被广泛研究，使用各种方法（例如，<strong>网络内部&#x2F;之间的平均连通性和大脑系统分离</strong>）来理解认知和认知老化。虽然这些方法假设静息状态功能网络以<strong>模块化结构</strong>运行，但互补的观点假设核心-外围或丰富的俱乐部结构解释了大脑功能，其中中枢彼此紧密互连以允许集成处理。我们引入了一种新方法，即<strong>基于持久同源性 (PH) 的功能连接</strong>，以量化集成处理过程中的信息模式。我们还研究了基于 PH 的功能连接是否解释了认知表现，并比较了三组自变量解释认知表现的变异量：（1）<strong>基于 PH 的功能连接</strong>，（2）<strong>基于图论的测量</strong>，以及（3 ) <strong>脑系统隔离</strong>。从 279 名健康参与者中提取静息状态功能连接数据，并在四个领域（流体推理、情景记忆、词汇和处理速度）生成认知能力评分。结果首先强调了整个大脑区域（即综合处理）的大脑信息流模式比大脑系统隔离或基于图论的网络拓扑测量更能解释认知能力的差异。结果还表明，随着与最短路径的功能连接相关的附加信息流强度的增加，流畅的推理和词汇性能显着下降。</p><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>静息状态功能网络与认知、认知老化和认知储备之间的关系已被广泛研究。大脑功能连通性已通过各种方式量化；例如，<strong>网络内部&#x2F;网络之间的平均相关性</strong>和<strong>大脑系统隔离</strong>。这些测量是基于大脑网络结构是<strong>模块化</strong>的假设计算的。然而，一个互补的观点假设<strong>一个核外围或丰富的俱乐部结构</strong>解释了大脑功能，其中中枢彼此紧密互连以允许集成处理。</p><p>又或者，<strong>基于图论的分析量化了大脑网络结构的拓扑结构</strong>。例如，<strong>隔离属性可以通过计算聚类系数和局部效率来衡量</strong>，或者<strong>集成属性可以通过计算全局效率和最短路径长度来衡量</strong>。然而，<strong>这些度量是从一个二进制邻接矩阵中计算出来的</strong>，是从关联度量的特定值的<strong>阈值</strong>中获得的。因此，尽管现有的基于图论的分析有助于研究人员探索大脑组织对认知功能和疾病的影响，但此类结果难以重现并且可能严重依赖于<strong>阈值选择</strong>。</p><p>最近的研究已经使用最小生成树 (MST) 方法来解决基于图论的大脑组织分析中的阈值依赖性。 </p><p>持续性同源性（PH）是拓扑数据分析（TDA）中经常使用的研究数据形状的工具之一，被认为是解决脑网络分析中<strong>阈值问题</strong>的另一种方法。TDA的基本思想是通过其低维度的拓扑特征来研究数据，这些拓扑特征转化为连接的组件（维度0），循环（维度1），空隙（维度2），等等。为了捕捉低维度的拓扑特征，TDA在网络中的各个节点上建立了一个抽象的结构，这被称为简单的复合体。在网络结构中，简化复合体由节点和边组成，就像一个子图。有许多方法来构建简明复数。在网络环境中，一个常见的方法是将边逐一添加到节点上，其方式是先添加具有权重的边。节点之间用边连接，形成相连的组件（维度1）或循环（维度2）。如果网络更加复杂，就很难在简约复合体中找到适当数量的边，来捕捉网络中的所有拓扑特征。相反，如果考虑到所有个可能的阈值，相应的结构集就可以捕捉到网络的相关拓扑特征。这就是 PH 的重点。定义为添加到空间中的边缘的简单复合体的集合被称为过滤。PH 追踪随着过滤的增加而出现（出生）或消失（死亡）的拓扑学特征。通过这种方式，PH捕捉到了大脑网络中的拓扑学特征，同时也避免了阈值的问题。事实上，在网络设置中，寻找死亡滤波值（如节点对之间的1-相关系数）的维度0的PH（PH捕捉连接的组件）的算法与寻找MST的高度的算法相同 。也就是说，MST是一棵只由具有死亡过滤维度0 PH的边组成的树，维度0 PH具有具有最有效信息流的结构的边权重的分布信息。从这些特征来看，PH 值可以量化MST网络拓扑结构的功能连接模式，从而保证大脑区域的最有效的综合处理。  </p><p>虽然 MST 方法只保留无环的无环图（即 MST 只保留没有环结构的连通分量），但 PH 方法分别跟踪连通分量（维度 0）和循环（维度 1）的信息。 因此，PH可以在连接所有节点之前考虑通过循环到MST的附加信息。此外，最近对大脑网络中MST网络分析的研究将构建的MST视为一个二元网络，并计算了MST的拓扑特征，例如叶子数（度数为1的节点），节点的最大介数等。从这个角度来看，MST network 分析与 PH 方法略有不同。 MST 网络分析量化了 MST 中节点的排列方式，而 PH 在网络设置中仅考虑 0 维时，量化了在 MST 处分配的边缘权重模式并将循环添加到 MST。</p><p>在当前的研究中，我们将连接所有没有循环的大脑区域（即 MST）和这种结构的附加循环的树分别称为“骨干”和“循环”。我们引入了描述骨干结构和循环结构中权重分布的度量，并将这些度量称为基于 PH 的功能连接。简而言之，骨干结构描述了大脑整合处理，循环结构描述了大脑区域在大脑整合处理过程中是如何相互连接的。因此，当主干结构为 given 时，循环结构中的权重分布可以解释在 brain-integrated processing 期间集线器相互连接的紧密程度。我们还研究了基于 PH 的功能连接与认知老化之间的关系。此外，我们比较了由基于 PH 的功能连接解释的认知能力变异量与由描述大脑组织（网络拓扑和 MST）、平均功能连接和大脑系统分离的测量解释的量。</p><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>在这项研究中，我们提出了一种新的测量方法来量化功能连接的一个重要方面，它通过使用 PH 来表征全脑整合模式。我们应用新的测量方法来研究静息状态大脑功能连接模式与认知能力之间的关系。我们的方法为综合处理过程中的大脑功能连接提供了的新见解，基于 PH 的功能连接测量解释了认知老化，而以隔离为中心的连接测量或基于图论的网络拓扑没有。</p><h2 id="Persistent-Homology-based-Functional-Connectivity"><a href="#Persistent-Homology-based-Functional-Connectivity" class="headerlink" title="Persistent Homology based Functional Connectivity"></a>Persistent Homology based Functional Connectivity</h2>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;基于持久同源的功能连接解释认知能力：寿命研究&quot;&gt;&lt;a href=&quot;#基于持久同源的功能连接解释认知能力：寿命研究&quot; class=&quot;headerlink&quot; title=&quot;基于持久同源的功能连接解释认知能力：寿命研究&quot;&gt;&lt;/a&gt;基于持久同源的功能连接解释认知能力：寿命</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python数据科学入门</title>
+    <link href="http://example.com/2022/10/24/Python%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%85%A5%E9%97%A8/"/>
+    <id>http://example.com/2022/10/24/Python%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%85%A5%E9%97%A8/</id>
+    <published>2022-10-24T06:46:34.000Z</published>
+    <updated>2022-10-24T06:46:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h2>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;线性代数&quot;&gt;&lt;a href=&quot;#线性代数&quot; class=&quot;headerlink&quot; title=&quot;线性代数&quot;&gt;&lt;/a&gt;线性代数&lt;/h2&gt;</summary>
+      
+    
+    
+    
+    <category term="数据科学" scheme="http://example.com/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Pytorch与Tensorflow的安装（Windows版）</title>
@@ -63,23 +189,23 @@
   </entry>
   
   <entry>
-    <title>Tensorflow学习笔记</title>
-    <link href="http://example.com/2022/10/17/Tensorflow%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://example.com/2022/10/17/Tensorflow%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <title>机器学习笔记（十）</title>
+    <link href="http://example.com/2022/10/17/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89/"/>
+    <id>http://example.com/2022/10/17/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89/</id>
     <published>2022-10-16T17:06:30.000Z</published>
     <updated>2022-10-16T17:06:30.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><ol><li><code>tf.norm()</code> 计算向量、矩阵和张量的范数</li><li><code>tf.reduce_sum()</code> 求所有元素之和；<code> tf.reduce_sum(x,0)</code>按列求和；<code>tf.reduce_sum(x,1)</code>按行求和</li></ol>]]></content>
+    <content type="html"><![CDATA[<h2 id="从生物神经元到人工神经元"><a href="#从生物神经元到人工神经元" class="headerlink" title="从生物神经元到人工神经元"></a>从生物神经元到人工神经元</h2><h3 id="感知器"><a href="#感知器" class="headerlink" title="感知器"></a>感知器</h3><p>阈值逻辑单元（TLU）&#x2F; 线性阈值单元（LTU）<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221112185528.png"></p><p>公式 10-1 感知器中使用的常见阶跃函数（假设阈值&#x3D;0）<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221112185647.png"></p><p>公式 10-2 计算全连接层的输出<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221112185752.png"></p><p>公式10-3：感知器学习规则（权重更新）<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221112185836.png"></p><p><strong>autodiff 算法</strong><br>#重要算法 </p><ul><li>它一次处理一个小批量（例如，每次包含32个实例），并且多次遍历整个训练集。每次遍历都称为一个轮次。</li><li>每个小批量都传递到网络的输入层，然后将其送到第一个隐藏层。然后该算法将计算该层中所有神经元的输出（对于小批量中的每个实例）。<strong>结果传递到下一层，计算其输出并传递到下一层</strong>，以此类推，直到获得最后一层（即输出层）的输出。这就是前向通路：就像进行预测一样，只是<strong>保留了所有中间结果</strong>，因为反向遍历需要它们。 </li><li>接下来，该算法测量网络的输出误差（该算法使用一种损失函数，<strong>该函数将网络的期望输出与实际输出进行比较</strong>，并返回一些<strong>误差测量值</strong>）。 </li><li>然后，它计算每个输出连接对错误的贡献程度。通过应用<strong>链式法则</strong>（可能是微积分中最基本的规则）来进行分析，从而使此步骤变得快速而精确。 </li><li>然后，算法再次使用链式法则来测量这些错误贡献中有多少是来自下面层中每个连接的错误贡献，算法一直进行，到达输入层为止。如前所述，这种反向传递通过在网络中向后传播误差梯度，从而<strong>有效地测量了网络中所有连接权重上的误差梯度</strong>（因此称为算法）。 </li><li>最终，该算法执行梯度下降步骤，<strong>使用刚刚计算出的误差梯度来调整网络中的所有连接权重</strong>。</li></ul><p>再次总结：对于每个训练实例，反向传播算法首先进行预测（正向传递）并测量误差，然后反向经过每个层以测量来自每个连接的误差贡献（反向传递），最后调整连接权重以减少错误（梯度下降步骤）。</p><p>激活函数</p><p><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221112191137.png"></p><h3 id="回归MLP"><a href="#回归MLP" class="headerlink" title="回归MLP"></a>回归MLP</h3><p>训练期间要使用的损失函数通常是<strong>均方误差</strong>，但是如果训练集中有很多离群值，则你可能更愿意使用<strong>平均绝对误差</strong>。或者，你可以使用 Huber 损失，这是<strong>两者的组合</strong>。</p><p>Huber损失：当误差小于阈值 δ（通常为1）时，Huber损失为<strong>二次方</strong>，而当误差大于 δ时，Huber损失为<strong>线性</strong>。线性部分使它对离群值的敏感性低于均方误差，而二次方部分使它比平均绝对误差更收敛并且更精确。</p><p><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221112191755.png"></p><h3 id="分类MLP"><a href="#分类MLP" class="headerlink" title="分类MLP"></a>分类MLP</h3><p><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221112192054.png"><br>关于损失函数，由于我们正在预测概率分布，因此交叉熵损失（也 称为对数损失，见第4章）通常是一个不错的选择。<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221112192146.png"></p><h2 id="使用Keras实现MLP"><a href="#使用Keras实现MLP" class="headerlink" title="使用Keras实现MLP"></a>使用Keras实现MLP</h2><p>Keras是高级深度学习API，可让你轻松构建、训练、评估和执行各种神经网络。<br><img src="https://markdown-1308430375.cos.ap-nanjing.myqcloud.com/20221112192540.png"></p><h3 id="安装Tensorflow2"><a href="#安装Tensorflow2" class="headerlink" title="安装Tensorflow2"></a>安装Tensorflow2</h3><p><a href="https://lab.moguw.top/2022/10/23/Pytorch%E4%B8%8ETensorflow%E7%9A%84%E5%AE%89%E8%A3%85%EF%BC%88Windows%E7%89%88%EF%BC%89/">点击查看 –&gt; 安装Tensorflow2</a></p><ul><li>顺序API构建图像分类</li><li>使用顺序API创建模型</li><li>编译模型</li><li>训练和评估模型</li></ul><p>使用”sparse_categorical_crossentropy”损失，因为我们具有<strong>稀疏标签</strong>（即对于每个实例，只有一个目标类索引，在这种情况下为0到9），并且这些类是<strong>互斥</strong>的。</p><p>相反，如果每个实例的<strong>每个类都有一个目标概率</strong> （例如独热向量，[0.，0.，0.，1.，0.，0.，0.，0.，0.，0]代表类 3），则我们需要使用”categorical_crossentropy”损失。</p><p>如果我们正在执行<strong>二进制分类</strong>（带有一个或多个二进制标签），则在输出层中使 用”sigmoid”（即逻辑）激活函数，而不是”softmax”激活函数，并且使 用”binary_crossentropy”损失。</p><p>如果要将稀疏标签（即类索引）转换为独热向量标签，使用 keras.utils.to_categorical（）函数。反之则使用np.argmax() 函数和 axis&#x3D;1。</p><p>关于优化器，”sgd”表示我们使用简单的随机梯度下降来训练模型。换句话说，Keras将执行先前所述的<strong>反向传播算法（即反向模式自动微分加梯度下降）</strong>。</p><p>最后，由于这是一个分类器，因此在训练和评估过程中测量其”accuracy”很有用。</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;h2 id=&quot;常用函数&quot;&gt;&lt;a href=&quot;#常用函数&quot; class=&quot;headerlink&quot; title=&quot;常用函数&quot;&gt;&lt;/a&gt;常用函数&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;tf.norm()&lt;/code&gt; 计算向量、矩阵和张量的范数&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;tf.r</summary>
+    <summary type="html">&lt;h2 id=&quot;从生物神经元到人工神经元&quot;&gt;&lt;a href=&quot;#从生物神经元到人工神经元&quot; class=&quot;headerlink&quot; title=&quot;从生物神经元到人工神经元&quot;&gt;&lt;/a&gt;从生物神经元到人工神经元&lt;/h2&gt;&lt;h3 id=&quot;感知器&quot;&gt;&lt;a href=&quot;#感知器&quot; class</summary>
       
     
     
+    
+    <category term="机器学习" scheme="http://example.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
   </entry>
