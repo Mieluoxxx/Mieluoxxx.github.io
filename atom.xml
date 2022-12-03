@@ -121,28 +121,6 @@
   </entry>
   
   <entry>
-    <title>Python数据科学入门</title>
-    <link href="http://example.com/2022/10/24/"/>
-    <id>http://example.com/2022/10/24/</id>
-    <published>2022-10-24T06:46:34.000Z</published>
-    <updated>2022-10-24T06:46:34.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h2>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;线性代数&quot;&gt;&lt;a href=&quot;#线性代数&quot; class=&quot;headerlink&quot; title=&quot;线性代数&quot;&gt;&lt;/a&gt;线性代数&lt;/h2&gt;</summary>
-      
-    
-    
-    
-    <category term="数据科学" scheme="http://example.com/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Pytorch与Tensorflow的安装（Windows版）</title>
     <link href="http://example.com/2022/10/23/"/>
     <id>http://example.com/2022/10/23/</id>
